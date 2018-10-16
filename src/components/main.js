@@ -1,35 +1,29 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux'
+//import {connect} from 'react-redux'
 import RegistrationForm from './registration-form'
+import Landing from './landing';
+import LoginForm from './login-form';
 
  export default class Main extends Component {
 
-  mainLanding = (
-    <div className="mainContent">
-      <div className="landingContent">
-        <h1>Workout Tracker</h1>
-        <p>Welcome the <i>best</i> workout fitness tracking app
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Vivamus sit amet risus pretium, luctus enim quis, dignissim neque.
-        Nam consequat scelerisque blandit.</p>
-        <button>Register</button>
-        <button>Log In</button>
-      </div>
-    </div>
-  )
-
-
+  hideOnClick(target) {
+    return target.style.display = 'none';
+  }
 
   render() {
-
     return (
-      <RegistrationForm />
+      <div className="mainContent">
+        <Landing onClick={e => this.hideOnClick(e)}/>
+        <br></br>
+        <RegistrationForm />
+        <br></br>
+      </div>
     )
   }
 }
 
 // const mapStateToProps = state => ({
-//   cheeses: state.cheese
+//
 // })
 
 // export default connect()();

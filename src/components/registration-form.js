@@ -2,18 +2,26 @@ import React from 'react';
 import {reduxForm, Field} from 'redux-form';
 import {required, nonEmpty, correctLength, charIsNum, isEmail} from './validators';
 import {register} from './actions/register';
+import {login} from './actions/login';
 import Input from './input';
 
 class RegistrationForm extends React.Component {
   render() {
     if(this.props.submitSucceeded) {
       return (
-        <div>Submitted</div>
+        <p>Submitted and Logged in</p>
       )
     }
     return (
-      <form onSubmit={this.props.handleSubmit(values =>
-        this.props.dispatch(register(values))
+      <form onSubmit={this.props.handleSubmit(values => {
+        return Promise.all([
+          this.props.dispatch(register(values)),
+        ])
+        .then(() => this.props.dispatch(login({username: values.username, password: values.password}))
+        )
+        .then(() => console.log('Created user and logged in'));
+      }
+
       )}>
         <Field name='username' id='username' component={Input} element='input' type='text'
           label='Username' validate={[required, nonEmpty, correctLength]} />
