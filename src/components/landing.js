@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 export default function landing(props) {
   return (
@@ -9,10 +10,9 @@ export default function landing(props) {
       Vivamus sit amet risus pretium, luctus enim quis, dignissim neque.
       Nam consequat scelerisque blandit.</p>
 
-      {/* onclick hide landingContent show RegistrationForm */}
-      {/* this.mainLanding.style.display = '' */}
-      <button onClick={e => props.hideOnClick(e.target)}>Register</button>
-      <button>Log In</button>
+      <Link to='/landing/register'><button>Register</button></Link>
+      <Link to='/landing/login'><button>Log In</button></Link>
+
     </div>
   )
 }
