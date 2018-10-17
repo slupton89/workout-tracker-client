@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import RegistrationForm from './registration-form'
 import Landing from './landing';
 import LoginForm from './login-form';
+import UserHeader from './user-dash-header';
 
  export default class Main extends Component {
 
@@ -16,13 +17,18 @@ import LoginForm from './login-form';
   }
 
   render() {
-      if(localStorage !== null) {
+      if(localStorage === null) {
         window.history.pushState('landing', 'landing', '/landing');
-        localStorage.removeItem('authToken');
-      };
+      } else {
+        window.history.pushState('dash', 'dashboard', '/dashboard');
+      }
     return (
       <Router>
-        <div className="mainContent">
+        <div className="main">
+
+          <div className='header'>
+            <Route path='/dashboard' component={UserHeader} />
+          </div>
           <Route path='/landing' component={Landing} />
           <div>
             <Route exact path='/landing/register' component={RegistrationForm} />
