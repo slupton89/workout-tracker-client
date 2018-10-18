@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-export default function landing(props) {
+export default function landing() {
   return (
     <div className="landingContent">
       <h1>Workout Tracker</h1>

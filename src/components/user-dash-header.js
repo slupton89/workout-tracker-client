@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-export default function UserHeader(props) {
+export default function UserHeader() {
   return (
     <div className='user-dashboard'>
       <div className='user-info'>

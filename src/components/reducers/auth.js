@@ -4,7 +4,7 @@ import {
   FETCH_AUTH_FAILURE,
   CLEAR_AUTH,
   SET_AUTH
-} from '../actions/login'
+} from '../actions/auth'
 
 const initialState = {
   authToken: null,
@@ -15,16 +15,14 @@ const initialState = {
 
 export const authReducer = (state=initialState, action) => {
   if (action.type === FETCH_AUTH_REQUEST) {
-    console.log('request', action.auth);
     return Object.assign({}, state, {
       loading: true
     })
   } else if (action.type === FETCH_AUTH_SUCCESS) {
-     console.log('success action', action.auth)
     return Object.assign({}, state, {
       loading: false,
       error: null,
-      user: action.user
+      user: action.user.id
     })
   } else if (action.type === FETCH_AUTH_FAILURE) {
     return Object.assign({}, state, {
@@ -37,7 +35,6 @@ export const authReducer = (state=initialState, action) => {
       user: null
     })
   } else if(action.type === SET_AUTH) {
-    console.log('set', action.auth)
     return Object.assign({}, state, {
       authToken: action.authToken
     })

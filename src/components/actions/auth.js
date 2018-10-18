@@ -18,8 +18,9 @@ export const fetchAuthRequest = () => ({
 })
 
 export const FETCH_AUTH_SUCCESS = 'FETCH_AUTH_SUCCESS';
-export const fetchAuthSuccess = () => ({
-  type: FETCH_AUTH_SUCCESS
+export const fetchAuthSuccess = user => ({
+  type: FETCH_AUTH_SUCCESS,
+  user
 })
 
 export const FETCH_AUTH_FAILURE = 'FETCH_AUTH_FAILURE';
@@ -32,7 +33,7 @@ const storeAuthToken = (authToken, dispatch) => {
   dispatch(setAuth(authToken));
   dispatch(fetchAuthSuccess(decodedToken.user));
   localStorage.setItem('authToken', authToken);
-  // console.log(decodedToken, authToken);
+  console.log(decodedToken);
 }
 
 export const login = values => dispatch =>  {
@@ -57,6 +58,7 @@ export const login = values => dispatch =>  {
   .then(({authToken}) =>
     storeAuthToken(authToken, dispatch)
   )
+  .then(() => { })
   .catch(error =>
       Promise.reject(
           new SubmissionError({
