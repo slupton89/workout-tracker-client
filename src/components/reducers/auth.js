@@ -19,10 +19,11 @@ export const authReducer = (state=initialState, action) => {
       loading: true
     })
   } else if (action.type === FETCH_AUTH_SUCCESS) {
+    console.log(action);
     return Object.assign({}, state, {
       loading: false,
       error: null,
-      user: action.user.id
+      user: action.user
     })
   } else if (action.type === FETCH_AUTH_FAILURE) {
     return Object.assign({}, state, {

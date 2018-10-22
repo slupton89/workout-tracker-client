@@ -6,13 +6,14 @@ import {login} from './actions/auth';
 import Input from './input';
 import Redirect from 'react-router-dom/Redirect';
 import { connect } from 'react-redux';
+require('./form-registration.css');
 
-function RegistrationForm(props) {
+export function RegistrationForm(props) {
   if(props.loggedIn) {
     return <Redirect to='/dashboard' />
   }
   return (
-    <form onSubmit={props.handleSubmit(values => {
+    <form className='registration-form' onSubmit={props.handleSubmit(values => {
       return Promise.all([
         props.dispatch(register(values)),
       ])
@@ -43,11 +44,9 @@ function RegistrationForm(props) {
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
+const mapStateToProps = state => ({
     loggedIn: state.auth.user !== null
-  }
-}
+})
 
 RegistrationForm = connect(mapStateToProps)(RegistrationForm);
 

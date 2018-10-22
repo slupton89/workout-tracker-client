@@ -4,13 +4,15 @@ import {login} from './actions/auth';
 import Input from './input';
 import {connect} from 'react-redux';
 import Redirect from 'react-router-dom/Redirect';
+import requiresLogin from './requires-login';
+require('./form-login.css');
 
 function LoginForm(props) {
   if(props.loggedIn) {
     return <Redirect to='/dashboard' />
   }
   return (
-    <form onSubmit={props.handleSubmit(values =>
+    <form className='login-form' onSubmit={props.handleSubmit(values =>
       props.dispatch(login(values))
     )}>
       <Field name='username' id='username' component={Input} element='input' type='text'

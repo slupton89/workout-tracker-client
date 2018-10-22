@@ -1,5 +1,8 @@
 import {SubmissionError} from 'redux-form';
 import jwtDecode from 'jwt-decode';
+import {normalizeResponseErrors} from './utils';
+import {saveAuthToken, clearAuthToken} from '../../local-storage';
+import {API_URI} from '../../config';
 
 export const SET_AUTH = 'SET_AUTH';
 export const setAuth = authToken => ({
@@ -7,8 +10,9 @@ export const setAuth = authToken => ({
   authToken
 })
 
+
 export const CLEAR_AUTH = 'CLEAR_AUTH';
-export const cleatAuth = () => ({
+export const clearAuth = () => ({
   type: CLEAR_AUTH
 })
 
@@ -32,13 +36,12 @@ const storeAuthToken = (authToken, dispatch) => {
   const decodedToken = jwtDecode(authToken);
   dispatch(setAuth(authToken));
   dispatch(fetchAuthSuccess(decodedToken.user));
-  localStorage.setItem('authToken', authToken);
-  console.log(decodedToken);
+  saveAuthToken(authToken);
 }
 
 export const login = values => dispatch =>  {
   dispatch(fetchAuthRequest());
-  return fetch('http://localhost:8080/api/auth/login', {
+  return fetch(`${API_URI}/auth/login`, {
     method: 'POST',
     body: JSON.stringify(values),
     headers: {
@@ -67,3 +70,26 @@ export const login = values => dispatch =>  {
       )
   );
 }
+
+export const refreshAuthToken = () => (dispatch, getState) => {
+  dispatch(fetchAuthRequest());
+  const authToken = getState().auth.authToken;
+  return fetch(`${API_URI}/auth/refresh`, {
+      method: 'POST',
+      headers: {
+          // Provide our existing token as credentials to get a new one
+          Authorization: `Bearer ${authToken}`
+      }
+  })
+      .then(res => normalizeResponseErrors(res))
+      .then(res => res.json())
+      .then(({authToken}) => storeAuthToken(authToken, dispatch))
+      .catch(err => {
+          // We couldn't get a refresh token because our current credentials
+          // are invalid or expired, or something else went wrong, so clear
+          // them and sign us out
+          dispatch(fetchAuthFailure(err));
+          dispatch(clearAuth());
+          clearAuthToken(authToken);
+      });
+};

@@ -1,7 +1,8 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
 import Input from './input';
-import {postWorkout} from './actions/logging';
+import {postWorkout} from './actions/logs';
+require('./form-workout-track.css');
 
 export function TrackWorkout(props) {
   return (

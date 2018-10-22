@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+require('./landing.css');
 
 export default function landing() {
   return (
@@ -10,7 +11,7 @@ export default function landing() {
       Vivamus sit amet risus pretium, luctus enim quis, dignissim neque.
       Nam consequat scelerisque blandit.</p>
 
-      <Link to='/landing/register'><button>Register</button></Link>
+      <Link to='/landing/register'><button class='registerBtn'>Register</button></Link>
       <Link to='/landing/login'><button>Log In</button></Link>
 
     </div>
