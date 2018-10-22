@@ -34,6 +34,22 @@ export const fetchLogFailure = () => ({
   type: FETCH_LOG_FAILURE
 })
 
+export const FETCH_LOGID_REQUEST = 'FETCH_LOGID_REQUEST';
+export const fetchLogIdRequest = () => ({
+  type: FETCH_LOGID_REQUEST
+})
+
+export const FETCH_LOGID_SUCCESS = 'FETCH_LOGID_SUCCESS';
+export const fetchLogIdSuccess = (log) => ({
+  type: FETCH_LOGID_SUCCESS,
+  log
+})
+
+export const FETCH_LOGID_FAILURE = 'FETCH_LOGID_FAILURE';
+export const fetchLogIdFailure = () => ({
+  type: FETCH_LOGID_FAILURE
+})
+
 export const PATCH_LOG_REQUEST = 'PATCH_LOG_REQUEST';
 export const patchLogRequest = () => ({
   type: PATCH_LOG_REQUEST
@@ -55,8 +71,9 @@ export const deleteLogRequest = () => ({
 })
 
 export const DELETE_LOG_SUCCESS = 'DELETE_LOG_SUCCESS';
-export const deleteLogSuccess = () => ({
-  type: DELETE_LOG_SUCCESS
+export const deleteLogSuccess = (id) => ({
+  type: DELETE_LOG_SUCCESS,
+  id
 })
 
 export const DELETE_LOG_FAILURE = 'DELETE_LOG_FAILURE';
@@ -130,7 +147,7 @@ export const getWorkouts = logs => dispatch => {
 
 //getid
 export const getWorkoutId = id => dispatch => {
-  dispatch(fetchLogRequest(id));
+  dispatch(fetchLogIdRequest(id));
   console.log('retrieving log');
 
   return fetch(`${API_URI}/logs/${id}`, {
@@ -149,10 +166,10 @@ export const getWorkoutId = id => dispatch => {
     }
     return res.json()
   })
-  .then(logs => {
-    return dispatch(fetchLogSuccess(logs));
+  .then(log => {
+    return dispatch(fetchLogIdSuccess(log));
   })
-  .then(logs => console.log('Logs Retrieved', logs))
+  .then(log => console.log('Logs Retrieved', log))
   .catch(err => Promise.reject(
     new SubmissionError({
       [err.location]: err.message
@@ -207,18 +224,16 @@ export const deleteWorkout = id => dispatch => {
     }
   })
   .then(res => {
+    console.log(res);
     if(!res.ok) {
       return Promise.reject({
         message: res.statusText,
         code: res.status
       })
     }
-    return res.json()
+    dispatch(deleteLogSuccess(id));
   })
-  .then(() => {
-    dispatch(deleteLogSuccess());
-  })
-  .then(logs => console.log('Log Deleted'))
+  .then(() => console.log('Log Deleted'))
   .catch(err => Promise.reject(
     new SubmissionError({
       [err.location]: err.message
