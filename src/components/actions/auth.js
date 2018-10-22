@@ -49,7 +49,6 @@ export const login = values => dispatch =>  {
     }
   })
   .then(res => {
-    console.log('res', (res));
     if (!res.ok) {
         return Promise.reject({
             code: res.status,
@@ -61,7 +60,6 @@ export const login = values => dispatch =>  {
   .then(({authToken}) =>
     storeAuthToken(authToken, dispatch)
   )
-  .then(() => { })
   .catch(error =>
       Promise.reject(
           new SubmissionError({
