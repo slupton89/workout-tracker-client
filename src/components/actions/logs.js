@@ -137,7 +137,6 @@ export const getWorkouts = logs => dispatch => {
   .then(logs => {
     return dispatch(fetchLogSuccess(logs));
   })
-  .then(logs => console.log('Logs Retrieved', logs))
   .catch(err => Promise.reject(
     new SubmissionError({
       [err.location]: err.message

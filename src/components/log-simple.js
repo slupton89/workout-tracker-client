@@ -13,7 +13,7 @@ export function LogSimple(props) {
 
   const logs = props.logs.map((log, index) => {
     return (
-      <Link to={`/log/${log._id}`} key={index} >
+      <Link to={`/dashboard/log/${log._id}`} key={index} >
       <li className='log-item' onClick={() => {
         getCurLog(log._id);
       }

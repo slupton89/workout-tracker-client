@@ -1,9 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {deleteWorkout} from './actions/logs';
+import moment from 'moment';
+import {Link} from 'react-router-dom';
 
 export function LogDetail(props) {
     if(props.currentLog) {
+
+      const createdAt = moment(Date(props.currentLog.startedAt)).format("MM/DD/YY hh:mm");
+      const endedAt = moment(Date(props.currentLog.endedAt)).format("MM/DD/YY hh:mm");
+      const totalTime = moment(Date(props.currentLog.endedAt - props.currentLog.startedAt)).format("HH:mm:ss");
       return (
         <div>
 
@@ -11,17 +17,20 @@ export function LogDetail(props) {
         <h2>{props.currentLog.workoutType}</h2>
         <h2>Distance</h2>
         <p>{props.currentLog.distance}</p>
+        <h2>Duration</h2>
+        <p>{totalTime}</p>
         <h2>Started At</h2>
-        <p>{props.currentLog.startedAt}</p>
+        <p>{createdAt}</p>
         <h2>Ended At</h2>
-        <p>{props.currentLog.endedAt}</p>
+        <p>{endedAt}</p>
         <h2>Additional Comments</h2>
         <p>{props.currentLog.comments}</p>
 
-        <button>Edit</button>
-        <button onClick={() => {
+
+        <Link to='/dashboard'><button onClick={() => {
           props.dispatch(deleteWorkout(props.currentLog._id))
         }}>Delete</button>
+        </Link>
         </div>
       )
     }

@@ -14,12 +14,18 @@
 
 input {
   border: 1px solid black;
-  border-radius: 3px;
-  height: 24px;
+  border-radius: 15px;
+  height: 30px;
   margin: 5px;
-  font-size: 18px;
-  text-align: left;
-  align-self: stretch;
-  width: 100%;
+  font-size: 20px;
+  font-weight: 500;
+  width: 250px;
+  text-align: center;
+  background-color: #230040;
+  color: white
+}
+
+label {
+  font-size: 22px;
 }
 

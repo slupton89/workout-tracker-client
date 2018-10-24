@@ -7,8 +7,8 @@
 .user-dashboard {
   display: flex;
   grid-template-columns: 2;
-  background-color: dodgerblue;
-  border: 0.5px solid dodgerblue;
+  background-color: #46007F;
+  border: 0.5px solid #46007F;
   border-radius: 5px;
 }
 
@@ -35,13 +35,13 @@ h1 {
   font-size: 24px;
 }
 
-h2 {
+.workout-info h2 {
   margin: 0px;
   padding: 0px;
   font-size: 16px;
 }
 
-p {
+.workout-info p {
   margin: 0px;
   padding: 0px;
   font-size: 18px;

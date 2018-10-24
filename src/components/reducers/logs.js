@@ -21,7 +21,7 @@ const initialState = {
   logs: [],
   currentLog: null,
   loading: false,
-  error: null
+  error: null,
 }
 
 export const logReducer = (state=initialState, action) => {

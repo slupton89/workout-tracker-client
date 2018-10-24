@@ -4,8 +4,23 @@
   }
 }
 
+body {
+	color: white;
+
+	background-color: #6800BF;
+}
+
 div {
   text-align: center;
+}
+
+.landing-content h1 {
+	font-size: 32px;
+	font-weight: "500";
+}
+
+.landing-content p{
+	font-size: 24px;
 }
 
 button {
@@ -42,7 +57,8 @@ button:active {
 	cursor:pointer;
 	color:#ffffff;
 	font-family:Arial;
-	font-size:17px;
+	font-size:22px;
+	width: 140px;
 	padding:16px 31px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #2b3e6e;
@@ -53,4 +69,9 @@ button:active {
 .registerBtn:active {
 	position:relative;
 	top:1px;
+}
+
+.loginBtn {
+	font-size: 22px;
+	width: 140px;
 }

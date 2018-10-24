@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom';
 
 export default function Footer() {
   return (
-    <Link to='/logs'><button>+New Workout</button></Link>
+    <div className='footer'>
+    <Link to='/dashboard/logs'><button className='newWorkoutBtn'>+New Workout</button></Link>
+    </div>
   )
 }

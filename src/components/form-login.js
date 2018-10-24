@@ -20,7 +20,7 @@ function LoginForm(props) {
       <Field name='password' id='password' component={Input} element='input' type='password'
         label='Password' />
 
-      <button>Submit</button>
+      <button className='loginBtn'>Submit</button>
     </form>
   )
 }

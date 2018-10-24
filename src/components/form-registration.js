@@ -39,7 +39,7 @@ export function RegistrationForm(props) {
       <Field name='weight' id='weight' component={Input} element='input' type='Number'
         label='Weight' validate={[charIsNum]} />
 
-      <button>Submit</button>
+      <button className='loginBtn'>Submit</button>
     </form>
   )
 }

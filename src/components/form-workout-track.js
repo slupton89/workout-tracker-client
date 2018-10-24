@@ -2,31 +2,18 @@ import React from 'react';
 import {Field, reduxForm} from 'redux-form';
 import Input from './input';
 import {postWorkout} from './actions/logs';
+import {connect} from 'react-redux';
 import moment from 'moment';
+import {runTimer, endTimer, clearTimer, tick} from './actions/timer';
+import { Redirect } from 'react-router-dom';
 require('./form-workout-track.css');
 
+
 export function TrackWorkout(props) {
-
-  let startTime = 0;
-  let endTime;
-  let totalTime;
-
-  const stopwatch = () => {
-    if(startTime === 0) {
-      startTime = new Date();
-    } else {
-      endTime = new Date();
-      totalTime = endTime - startTime;
-    }
-  }
-
-
-
   return (
     <div className='track-form'>
       <form onSubmit={props.handleSubmit(values => {
-
-        props.dispatch(postWorkout({...values, startedAt: startTime, endedAt: endTime}))
+        props.dispatch(postWorkout({...values, startedAt: props.startTime, endedAt: props.endTime}));
       }
         )
       }>
@@ -37,23 +24,43 @@ export function TrackWorkout(props) {
         <Field name='distance' id='distance' component={Input} element='input'
           type='number' label='Distance' />
 
-        <h1>{totalTime}</h1>
+        <h1>{props.currentTime}</h1>
+
         <button onClick={(e) => {
           e.preventDefault();
-          stopwatch();
-          }}>Start/Stop</button>
+          props.dispatch(runTimer());
+          tick(props.dispatch);
+          }}>Start</button>
+
         <button onClick={(e) => {
           e.preventDefault();
-          startTime = 0;
-          endTime = 0;
-          totalTime = 0;
+          props.dispatch(endTimer());
+          console.log(props.endTime);
+          }}>Stop</button>
+
+        <button onClick={(e) => {
+          e.preventDefault();
+          props.dispatch(clearTimer());
           }}>Reset</button>
-        {/* set date based on submit time */}
-        <button>Submit</button>
+
+
+          <button>Submit</button>
+
       </form>
     </div>
   )
 }
+
+  const mapStateToProps = state => ({
+    startTime: state.timer.startTime,
+    endTime: state.timer.endTime,
+    totalTime: state.timer.totalTime,
+    currentTime: state.timer.currentTime,
+    logs: state.logs.logs,
+    state: state
+  })
+
+  TrackWorkout = connect(mapStateToProps)(TrackWorkout);
 
   export default reduxForm({
     form: 'track'

@@ -2,6 +2,7 @@ import React from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import requiresLogin from './requires-login';
+import {Link} from 'react-router-dom';
 require('./header.css');
 
 export function UserHeader(props) {
@@ -18,12 +19,8 @@ export function UserHeader(props) {
       </div>
 
       <div className='workout-info'>
-      <h2># Workouts this week</h2>
-      <p className='workoutNum'>5</p>
-      <h2>Last workout type</h2>
-      <p className='workoutType'>5{props.logs[props.logs.length]}</p>
-      <h2>Last workout date</h2>
-      <p className='workoutDate'>10/10/2019</p>
+      <Link to='/dashboard/'><button>Dashboard</button></Link>
+        <Link to='/landing'><button onClick={() => localStorage.removeItem('authToken')} className='logoutBtn'>Logout</button></Link>
       </div>
 
       {/* <div className='user-controls'>
