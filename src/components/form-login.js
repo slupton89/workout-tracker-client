@@ -11,9 +11,8 @@ export function LoginForm(props) {
   if(props.loggedIn) {
     return <Redirect to='/dashboard' />
   }
-
   return (
-    <form className='login-form' onSubmit={() => props.handleSubmit(values =>
+    <form className='login-form' onSubmit={props.handleSubmit(values =>
       props.dispatch(login(values))
     )} aria-label={'login form'}>
       <Field name='username' id='username' component={Input} element='input' type='text'
@@ -30,12 +29,12 @@ const mapStateToProps = state => ({
     loggedIn: state.auth.user !== null
 })
 
-LoginForm = connect(mapStateToProps)(LoginForm);
-
-export default reduxForm({
-  form: 'login'
-})(LoginForm);
+// LoginForm = connect(mapStateToProps)(LoginForm);
 
 // export default reduxForm({
 //   form: 'login'
-// })(connect(mapStateToProps)(LoginForm));
+// })(LoginForm);
+
+export default reduxForm({
+  form: 'login'
+})(connect(mapStateToProps)(LoginForm));

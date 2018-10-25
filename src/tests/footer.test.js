@@ -18,7 +18,10 @@ describe('<Footer />', () => {
     <Router history={history}>
       <Footer />
     </Router>);
-    expect(wrapper.find('.newWorkoutBtn').exists()).toEqual(true);
+    const button = wrapper.find('.newWorkoutBtn');
+    expect(button.exists()).toEqual(true);
+    const link = wrapper.find('Link');
+    expect(link.prop('to')).toEqual('/dashboard/logs');
   })
 
 })

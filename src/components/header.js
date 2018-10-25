@@ -3,6 +3,7 @@ import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import requiresLogin from './requires-login';
 import {Link} from 'react-router-dom';
+import {logoutAuth} from './actions/auth';
 require('./header.css');
 
 export function UserHeader(props) {
@@ -19,14 +20,9 @@ export function UserHeader(props) {
       </div>
 
       <div className='workout-info'>
-      <Link to='/dashboard/'><button>Dashboard</button></Link>
-        <Link to='/landing'><button onClick={() => localStorage.removeItem('authToken')} className='logoutBtn'>Logout</button></Link>
+      <Link to='/dashboard' id='dashLink'><button className='dashBtn' aria-label={'dashboard button'}>Dashboard</button></Link>
+        <Link to='/landing' id='logoutLink'><button onClick={() => props.dispatch(logoutAuth())} className='logoutBtn' aria-label={'dashboard button'}>Logout</button></Link>
       </div>
-
-      {/* <div className='user-controls'>
-      <button>Edit User</button>
-      <Link to='/landing'><button onClick={() => localStorage.removeItem('authToken')}>Logout</button></Link>
-      </div> */}
 
     </div>
   )

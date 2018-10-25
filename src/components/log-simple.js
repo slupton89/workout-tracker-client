@@ -12,6 +12,7 @@ export function LogSimple(props) {
   }
 
   const logs = props.logs.map((log, index) => {
+    console.log(log);
     return (
       <Link to={`/dashboard/log/${log._id}`} key={index} >
       <li className='log-item' onClick={() => {

@@ -33,7 +33,6 @@ export function TrackWorkout(props) {
         <button onClick={(e) => {
           e.preventDefault();
           props.dispatch(endTimer());
-          console.log(props.endTime);
           }}className='stopTimerBtn' aria-label={'stop timer button'}>Stop</button>
 
         <button onClick={(e) => {

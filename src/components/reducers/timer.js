@@ -15,7 +15,6 @@ const initialState = {
 
 export const timerReducer = (state = initialState, action) => {
   if(action.type === START_TIMER) {
-    console.log('set startTime', action.time);
     return Object.assign({}, state, {
       startTime: action.time
     })
@@ -26,7 +25,6 @@ export const timerReducer = (state = initialState, action) => {
   } else if(action.type === RESET_TIMER) {
     return initialState
   } else if(action.type === UPDATE_TIME) {
-    console.log('updating', action.time);
     return Object.assign({}, state, {
       currentTime: action.time
     })

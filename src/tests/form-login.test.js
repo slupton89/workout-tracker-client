@@ -6,8 +6,9 @@ import store from '../store';
 
 describe('<LoginForm />', () => {
   it('Should render without crashing', () => {
-    shallow(<Provider store={store} >
-    <LoginForm />
+    shallow(
+    <Provider store={store} >
+      <LoginForm />
     </Provider>);
   });
 
@@ -24,13 +25,5 @@ describe('<LoginForm />', () => {
     wrapper.simulate('submit');
     expect(callback).toHaveBeenCalled();
   });
-
-  // it('Should not fire onAdd if the input is empty', () => {
-  //   const callback = jest.fn();
-  //   const wrapper = mount(<LoginForm onSubmit={callback} handleSubmit={handleSubmit} />);
-  //   wrapper.instance().setEditing(true);
-  //   wrapper.simulate('submit');
-  //   expect(callback).not.toHaveBeenCalled();
-  // });
 
 })

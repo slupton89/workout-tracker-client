@@ -1,8 +1,13 @@
 import React from 'react';
+import {Redirect} from 'react-router-dom';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 require('./landing.css');
 
-export default function Landing() {
+export function Landing(props) {
+  if(props.loggedIn) {
+    return <Redirect to='/dashboard' />
+  }
   return (
     <div className="landing-content" aria-label={'landing intro'}>
       <div>
@@ -18,3 +23,10 @@ export default function Landing() {
   )
 }
 
+const mapStateToProps = (state) => {
+  return {
+    loggedIn: state.auth.user !== null,
+  }
+}
+
+export default connect(mapStateToProps)(Landing);

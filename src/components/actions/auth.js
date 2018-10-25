@@ -32,7 +32,7 @@ export const fetchAuthFailure = () => ({
   type: FETCH_AUTH_FAILURE
 })
 
-const storeAuthToken = (authToken, dispatch) => {
+export const storeAuthToken = (authToken, dispatch) => {
   const decodedToken = jwtDecode(authToken);
   dispatch(setAuth(authToken));
   dispatch(fetchAuthSuccess(decodedToken.user));
@@ -57,15 +57,17 @@ export const login = values => dispatch =>  {
     }
     return res.json();
   })
-  .then(({authToken}) =>
-    storeAuthToken(authToken, dispatch)
-  )
-  .catch(error =>
+  .then(({authToken}) => {
+    storeAuthToken(authToken, dispatch);
+  })
+  .catch(error => {
+      console.log(error)
       Promise.reject(
           new SubmissionError({
               [error.location]: error.message
           })
       )
+        }
   );
 }
 
@@ -91,3 +93,9 @@ export const refreshAuthToken = () => (dispatch, getState) => {
           clearAuthToken(authToken);
       });
 };
+
+export const logoutAuth = () => (dispatch, getState) => {
+  const authToken = getState().auth.authToken;
+  dispatch(clearAuth());
+  clearAuthToken(authToken);
+}
