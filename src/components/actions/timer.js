@@ -28,22 +28,20 @@ let time = new Date().getTime() / 1000;
 let startTime, endTime;
 let stopwatch = timo;
 
-stopwatch.timer.start = 0;
-  stopwatch.timer.stop = 0;
-console.log(stopwatch.timer);
+
 
 export const tick = (dispatch) => {
   const nextTick = () => dispatch => {
     time = time + 1;
     if(running) {
       setTimeout(() => {
+        dispatch(updateTime(stopwatch.duration()));
         dispatch(nextTick());
       }, 1000);
     } else {
       clearTimeout();
     }
-    console.log(stopwatch);
-    dispatch(updateTime(updateDisplay()));
+
   }
   dispatch(nextTick());
 }
@@ -53,7 +51,6 @@ export const runTimer = () => dispatch => {
   startTime = time * 1000;
   stopwatch.start()
   running = true;
-  console.log();
 }
 
 export const endTimer = () => dispatch => {
@@ -61,16 +58,10 @@ export const endTimer = () => dispatch => {
   endTime = time * 1000;
   running = false;
   stopwatch.stop()
-  console.log(stopwatch.timer);
 }
 
 export const clearTimer = () => dispatch => {
   dispatch(resetTimer());
   stopwatch.timer.start = 0;
   stopwatch.timer.stop = 0;
-  console.log(stopwatch.timer);
-}
-
-export const updateDisplay = () => {
-  return stopwatch.duration();
 }

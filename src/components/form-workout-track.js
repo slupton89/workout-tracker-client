@@ -3,9 +3,7 @@ import {Field, reduxForm} from 'redux-form';
 import Input from './input';
 import {postWorkout} from './actions/logs';
 import {connect} from 'react-redux';
-import moment from 'moment';
 import {runTimer, endTimer, clearTimer, tick} from './actions/timer';
-import { Redirect } from 'react-router-dom';
 require('./form-workout-track.css');
 
 
@@ -19,10 +17,10 @@ export function TrackWorkout(props) {
       }>
         {/* dropdown selection maybe? */}
         <Field name='workoutType' id='workoutType' component={Input} element='input'
-          type='text' label='Workout Type' />
+          type='text' label='Workout Type' aria-label={'workout type field'}/>
         {/* in combo with above selector, only show if walk, run, cycle */}
         <Field name='distance' id='distance' component={Input} element='input'
-          type='number' label='Distance' />
+          type='number' label='Distance' aria-label={'distance field'}/>
 
         <h1>{props.currentTime}</h1>
 
@@ -30,21 +28,21 @@ export function TrackWorkout(props) {
           e.preventDefault();
           props.dispatch(runTimer());
           tick(props.dispatch);
-          }}>Start</button>
+          }} className='startTimerBtn' aria-label={'start timer button'}>Start</button>
 
         <button onClick={(e) => {
           e.preventDefault();
           props.dispatch(endTimer());
           console.log(props.endTime);
-          }}>Stop</button>
+          }}className='stopTimerBtn' aria-label={'stop timer button'}>Stop</button>
 
         <button onClick={(e) => {
           e.preventDefault();
           props.dispatch(clearTimer());
-          }}>Reset</button>
+          }}className='resetTimerBtn' aria-label={'reset timer button'}>Reset</button>
 
 
-          <button>Submit</button>
+          <button aria-label={'submit button'}>Submit</button>
 
       </form>
     </div>

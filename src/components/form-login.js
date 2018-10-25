@@ -4,35 +4,38 @@ import {login} from './actions/auth';
 import Input from './input';
 import {connect} from 'react-redux';
 import Redirect from 'react-router-dom/Redirect';
-import requiresLogin from './requires-login';
+
 require('./form-login.css');
 
-function LoginForm(props) {
+export function LoginForm(props) {
   if(props.loggedIn) {
     return <Redirect to='/dashboard' />
   }
-  return (
-    <form className='login-form' onSubmit={props.handleSubmit(values =>
-      props.dispatch(login(values))
-    )}>
-      <Field name='username' id='username' component={Input} element='input' type='text'
-        label='Username' />
-      <Field name='password' id='password' component={Input} element='input' type='password'
-        label='Password' />
 
-      <button className='loginBtn'>Submit</button>
+  return (
+    <form className='login-form' onSubmit={() => props.handleSubmit(values =>
+      props.dispatch(login(values))
+    )} aria-label={'login form'}>
+      <Field name='username' id='username' component={Input} element='input' type='text'
+        label='Username' aria-label={'username field'} />
+      <Field name='password' id='password' component={Input} element='input' type='password'
+        label='Password' aria-label={'password field'}/>
+
+      <button className='loginBtn' aria-label={'login submit'}>Submit</button>
     </form>
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
+const mapStateToProps = state => ({
     loggedIn: state.auth.user !== null
-  }
-}
+})
 
 LoginForm = connect(mapStateToProps)(LoginForm);
 
 export default reduxForm({
   form: 'login'
 })(LoginForm);
+
+// export default reduxForm({
+//   form: 'login'
+// })(connect(mapStateToProps)(LoginForm));

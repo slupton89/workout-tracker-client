@@ -11,20 +11,20 @@ export function LogDetail(props) {
       const endedAt = moment(Date(props.currentLog.endedAt)).format("MM/DD/YY hh:mm");
       const totalTime = moment(Date(props.currentLog.endedAt - props.currentLog.startedAt)).format("HH:mm:ss");
       return (
-        <div>
+        <div className='detail-log'>
 
-        <h2>Workout Type</h2>
-        <h2>{props.currentLog.workoutType}</h2>
-        <h2>Distance</h2>
-        <p>{props.currentLog.distance}</p>
-        <h2>Duration</h2>
-        <p>{totalTime}</p>
-        <h2>Started At</h2>
-        <p>{createdAt}</p>
-        <h2>Ended At</h2>
-        <p>{endedAt}</p>
-        <h2>Additional Comments</h2>
-        <p>{props.currentLog.comments}</p>
+          <h2>Workout Type</h2>
+          <h1>{props.currentLog.workoutType}</h1>
+          <h2>Distance</h2>
+          <p>{props.currentLog.distance}</p>
+          <h2>Duration</h2>
+          <p>{totalTime}</p>
+          <h2>Started At</h2>
+          <p>{createdAt}</p>
+          <h2>Ended At</h2>
+          <p>{endedAt}</p>
+          <h2>Additional Comments</h2>
+          <p>{props.currentLog.comments}</p>
 
 
         <Link to='/dashboard'><button onClick={() => {

@@ -16,18 +16,16 @@ export function LogWorkout(props) {
       })
 
       }>
-        {/* dropdown selection maybe? */}
         <Field name='workoutType' id='workoutType' component={Input} element='input'
-          type='text' label='Workout Type' />
-        {/* in combo with above selector, only show if walk, run, cycle */}
+          type='text' label='Workout Type' aria-label={'workout type field'}/>
         <Field name='distance' id='distance' component={Input} element='input'
-          type='number' label='Distance' />
+          type='number' label='Distance' aria-label={'distance field'}/>
         <Field name='startTime' id='startTime' component={Input} element='input'
-          type='time' label='Start Time' />
+          type='time' label='Start Time' aria-label={'start time field'}/>
         <Field name='endTime' id='endTime' component={Input} element='input'
-          type='time' label='End Time' />
+          type='time' label='End Time' aria-label={'end time field'}/>
 
-        <button>Submit</button>
+        <button aria-label={'submit button'}>Submit</button>
       </form>
     </div>
   )
