@@ -11,16 +11,16 @@ Users can create an account and keep logs with basic information of their workou
 app.js is the main component renderer of the app. All other components are rendered and routed through here.
 
 Landing page
-![Landing](https://github.com/slupton89/workout-tracker-client/src/readme/landing.png)
+![Landing](https://github.com/slupton89/workout-tracker-client/readme/landing.png)
 
 Dashboard
-![Landing](https://github.com/slupton89/workout-tracker-client/src/readme/dash.png)
+![Landing](https://github.com/slupton89/workout-tracker-client/readme/dash.png)
 
 Creating Logs
-![Landing](https://github.com/slupton89/workout-tracker-client/src/readme/createlog.png)
+![Landing](https://github.com/slupton89/workout-tracker-client/readme/createlog.png)
 
 Viewing Logs
-![Landing](https://github.com/slupton89/workout-tracker-client/src/readme/detail.png)
+![Landing](https://github.com/slupton89/workout-tracker-client/readme/detail.png)
 
 
 Clone the client and server linked above and run
