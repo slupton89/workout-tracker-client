@@ -5,7 +5,16 @@ import Input from './input';
 import {postWorkout} from './actions/logs';
 
 export function LogWorkout(props) {
-
+  const selector = (
+    <div>
+    <Field name="favoriteColor" component="select">
+      <option></option>
+      <option value="ff0000">Red</option>
+      <option value="00ff00">Green</option>
+      <option value="0000ff">Blue</option>
+    </Field>
+  </div>
+  )
   return (
     <div className='log-form'>
       <form onSubmit={props.handleSubmit(values => {
@@ -18,8 +27,8 @@ export function LogWorkout(props) {
       }>
         <Field name='workoutType' id='workoutType' component={Input} element='input'
           type='text' label='Workout Type' aria-label={'workout type field'}/>
-        <Field name='distance' id='distance' component={Input} element='input'
-          type='number' label='Distance' aria-label={'distance field'}/>
+        <Field name='measure' id='measure' component={Input} element='input'
+          type='text' label='Intesity/Distance' aria-label={'distance field'}/>
         <Field name='startTime' id='startTime' component={Input} element='input'
           type='time' label='Start Time' aria-label={'start time field'}/>
         <Field name='endTime' id='endTime' component={Input} element='input'

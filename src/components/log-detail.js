@@ -6,15 +6,15 @@ import {Link} from 'react-router-dom';
 
 export function LogDetail(props) {
     if(props.currentLog) {
-      const createdAt = moment(Date(props.currentLog.startedAt)).format("MM/DD/YY hh:mm");
-      const endedAt = moment(Date(props.currentLog.endedAt)).format("MM/DD/YY hh:mm");
+      const createdAt = moment(Date(props.currentLog.startedAt)).format("MM/DD/YY hh:mm a");
+      const endedAt = moment(Date(props.currentLog.endedAt)).format("MM/DD/YY hh:mm a");
       const totalTime = moment(Date(props.currentLog.endedAt - props.currentLog.startedAt)).format("HH:mm:ss");
       return (
         <div className='detail-log'>
 
           <h2>Workout Type</h2>
           <p>{props.currentLog.workoutType}</p>
-          <h2>Distance</h2>
+          <h2>Intensity/Distance</h2>
           <p>{props.currentLog.distance}</p>
           <h2>Duration</h2>
           <p>{totalTime}</p>
@@ -22,7 +22,7 @@ export function LogDetail(props) {
           <p>{createdAt}</p>
           <h2>Ended At</h2>
           <p>{endedAt}</p>
-          <h2>Additional Comments</h2>
+          <h2>Comments</h2>
           <p>{props.currentLog.comments}</p>
 
 

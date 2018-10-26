@@ -35,6 +35,7 @@ export const tick = (dispatch) => {
     time = time + 1;
     if(running) {
       setTimeout(() => {
+        stopwatch.setNowInTimerForKey('stop');
         dispatch(updateTime(stopwatch.duration()));
         dispatch(nextTick());
       }, 1000);

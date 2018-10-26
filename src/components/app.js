@@ -13,7 +13,7 @@ import LogDetail from './log-detail';
 import {getWorkouts} from './actions/logs';
 import { connect } from 'react-redux';
 import Redirect from 'react-router-dom/Redirect';
-
+require('./app.css');
 export default class App extends Component {
 
   componentDidMount() {

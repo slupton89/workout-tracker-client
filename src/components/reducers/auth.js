@@ -19,7 +19,6 @@ export const authReducer = (state=initialState, action) => {
       loading: true
     })
   } else if (action.type === FETCH_AUTH_SUCCESS) {
-    console.log(action);
     return Object.assign({}, state, {
       loading: false,
       error: null,

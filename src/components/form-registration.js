@@ -44,9 +44,6 @@ const mapStateToProps = state => ({
     loggedIn: state.auth.user !== null
 })
 
-RegistrationForm = connect(mapStateToProps)(RegistrationForm);
-
 export default reduxForm({
-  form: 'register',
-})(RegistrationForm);
-
+  form: 'register'
+})(connect(mapStateToProps)(RegistrationForm));

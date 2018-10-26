@@ -46,3 +46,17 @@ h1 {
   padding: 0px;
   font-size: 18px;
 }
+
+.logoutBtn {
+  background-color: rgb(240, 0, 100);
+  border: 1px solid rgb(240, 0, 100);
+}
+
+.logoutBtn:hover {
+	background-color:rgb(209, 0, 28);
+}
+
+.logoutBtn:active {
+	position:relative;
+	top:1px;
+}

@@ -116,7 +116,6 @@ export const postWorkout = values => dispatch => {
 // get
 export const getWorkouts = logs => dispatch => {
   dispatch(fetchLogRequest(logs));
-  console.log('retrieving logs');
 
   return fetch(`${API_URI}/logs`, {
     method: 'GET',
