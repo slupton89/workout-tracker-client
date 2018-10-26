@@ -1,6 +1,6 @@
 import React from 'react';
 import LogSimple from '../components/log-simple';
-import {shallow} from 'enzyme';
+import {shallow, mount} from 'enzyme';
 import {Provider} from 'react-redux';
 import store from '../store';
 
@@ -18,13 +18,13 @@ describe('<LogSimple />', () => {
   ];
 
 
-    const wrapper = shallow(
+    const wrapper = mount(
     <Provider store={store}>
       <LogSimple {...logs} />
     </Provider>);
 
     const log = wrapper.find('log-item')
-    console.log(log.debug());
+
   })
 
 })

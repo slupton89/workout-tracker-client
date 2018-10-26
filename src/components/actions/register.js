@@ -1,8 +1,22 @@
 import {SubmissionError} from 'redux-form';
+import {API_URI} from '../../config';
+export const REGISTER_REQUEST = 'REGISTER_REQUEST';
+export const registerRequest = () => ({
+  type: REGISTER_REQUEST
+})
 
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+export const registerSuccess = () => ({
+  type: REGISTER_SUCCESS
+})
+
+export const REGISTER_FAILURE = 'REGISTER_FAILURE';
+export const registerFailure = () => ({
+  type: REGISTER_FAILURE
+})
 export const register = values => dispatch => {
-    const API_URL = 'http://localhost:8080/api'
-    return fetch(`${API_URL}/users`, {
+    dispatch(registerRequest());
+    return fetch(`${API_URI}/users`, {
         method: 'POST',
         body: JSON.stringify(values),
         headers: {
@@ -17,7 +31,7 @@ export const register = values => dispatch => {
                 });
             }
         })
-        .then(() => console.log('Submitted with values', values))
+        .then(() => dispatch(registerSuccess()))
         .catch(error =>
             Promise.reject(
                 new SubmissionError({

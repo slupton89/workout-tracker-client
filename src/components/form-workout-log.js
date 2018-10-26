@@ -18,6 +18,7 @@ export function LogWorkout(props) {
   return (
     <div className='log-form'>
       <form onSubmit={props.handleSubmit(values => {
+        console.log(values);
         return Promise.all([
           props.dispatch(postWorkout(values)),
         ])
@@ -29,10 +30,12 @@ export function LogWorkout(props) {
           type='text' label='Workout Type' aria-label={'workout type field'}/>
         <Field name='measure' id='measure' component={Input} element='input'
           type='text' label='Intesity/Distance' aria-label={'distance field'}/>
-        <Field name='startTime' id='startTime' component={Input} element='input'
-          type='time' label='Start Time' aria-label={'start time field'}/>
-        <Field name='endTime' id='endTime' component={Input} element='input'
-          type='time' label='End Time' aria-label={'end time field'}/>
+        <Field name='startedAt' id='startedAt' component={Input} element='input'
+          type='datetime-local' label='Start Time' aria-label={'start time field'}/>
+        <Field name='endedAt' id='endedAt' component={Input} element='input'
+          type='datetime-local' label='End Time' aria-label={'end time field'}/>
+        <Field name='comments' id='comments' component={Input} element='textarea'
+          type='text' multiLine={true} rows={2} label='Comments' aria-label={'distance field'}/>
 
         <button aria-label={'submit button'}>Submit</button>
       </form>

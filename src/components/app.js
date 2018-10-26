@@ -45,7 +45,7 @@ export default class App extends Component {
 
           <br></br>
           <div className='footer'>
-            <Route path='/dashboard' component={Footer} />
+            <Route exact path='/dashboard' component={Footer} />
           </div>
         </div>
       </Router>

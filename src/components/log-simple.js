@@ -21,7 +21,7 @@ export function LogSimple(props) {
       }>
       <h1>{log.workoutType}</h1>
       <h2>{log.distance}</h2>
-      <h2>{moment(log.createdAt).format("MM/DD/YY hh:mm a")}</h2>
+      <h2>{moment(log.startedAt).format("MM/DD/YY hh:mm a")}</h2>
       </li>
       </Link>
     )

@@ -27,5 +27,6 @@ input {
 
 label {
   font-size: 22px;
+  display: block;
 }
 
