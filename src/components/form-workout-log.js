@@ -18,7 +18,6 @@ export function LogWorkout(props) {
   return (
     <div className='log-form'>
       <form onSubmit={props.handleSubmit(values => {
-        console.log(values);
         return Promise.all([
           props.dispatch(postWorkout(values)),
         ])

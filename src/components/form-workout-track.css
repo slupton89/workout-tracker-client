@@ -18,7 +18,8 @@
 #comments {
   border: 1px solid black;
   border-radius: 15px;
-  width: 245px;
+  width: 270px;
+  height: 75px;
   background-color: #230040;
   color: white;
   font-size: 20px;

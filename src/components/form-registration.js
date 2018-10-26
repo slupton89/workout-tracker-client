@@ -14,9 +14,7 @@ export function RegistrationForm(props) {
   }
   return (
     <form className='registration-form' onSubmit={props.handleSubmit(values => {
-      return Promise.all([
-        props.dispatch(register(values)),
-      ])
+        props.dispatch(register(values))
       .then(() => props.dispatch(login({username: values.username, password: values.password}))
       )
     })}aria-label={'registration form'}>
@@ -27,7 +25,7 @@ export function RegistrationForm(props) {
       <Field name='fullName' id='fullName' component={Input} element='input' type='string'
         label='Full Name' validate={[required, nonEmpty]} aria-label={'fullname field'}/>
       <Field name='email' id='email' component={Input} element='input' type='email'
-        label='Email' validate={[required, nonEmpty, isEmail]} aria-label={'email field'}/>
+        label='Email' validate={[required, nonEmpty]} aria-label={'email field'}/>
       <Field name='age' id='age' component={Input} element='input' type='Number'
         label='Age' validate={[charIsNum]} aria-label={'age field'}/>
       <Field name='height' id='height' component={Input} element='input' type='string'
@@ -35,7 +33,7 @@ export function RegistrationForm(props) {
       <Field name='weight' id='weight' component={Input} element='input' type='Number'
         label='Weight' validate={[charIsNum]} aria-label={'weight field'}/>
 
-      <button className='loginBtn'aria-label={'submit button'}>Submit</button>
+      <button className='loginBtn' >Submit</button>
     </form>
   )
 }
