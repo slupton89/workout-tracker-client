@@ -5,16 +5,6 @@ import Input from './input';
 import {postWorkout} from './actions/logs';
 
 export function LogWorkout(props) {
-  const selector = (
-    <div>
-    <Field name="favoriteColor" component="select">
-      <option></option>
-      <option value="ff0000">Red</option>
-      <option value="00ff00">Green</option>
-      <option value="0000ff">Blue</option>
-    </Field>
-  </div>
-  )
   return (
     <div className='log-form'>
       <form onSubmit={props.handleSubmit(values => {

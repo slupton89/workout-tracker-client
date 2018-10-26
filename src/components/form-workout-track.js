@@ -1,10 +1,10 @@
 import React from 'react';
-import {Field, reduxForm, reset} from 'redux-form';
+import {Field, reduxForm} from 'redux-form';
 import Input from './input';
 import {postWorkout} from './actions/logs';
 import {connect} from 'react-redux';
 import {runTimer, endTimer, clearTimer, tick} from './actions/timer';
-import Timer from './Timer';
+
 require('./form-workout-track.css');
 
 
@@ -47,7 +47,7 @@ export function TrackWorkout(props) {
         <Field name='comments' id='comments' component={Input} element='textarea'
           type='text' multiLine={true} rows={2} label='Comments' aria-label={'distance field'}/>
 
-        {/* {timer} */}
+
         <br></br>
         <h1>Time:</h1>
         <h2>{props.currentTime}</h2>
@@ -73,8 +73,7 @@ export function TrackWorkout(props) {
     state: state
   })
 
-  TrackWorkout = connect(mapStateToProps)(TrackWorkout);
 
   export default reduxForm({
     form: 'track'
-  })(TrackWorkout);
+  })(connect(mapStateToProps)(TrackWorkout));
