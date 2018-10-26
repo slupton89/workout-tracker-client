@@ -4,10 +4,12 @@ import Input from './input';
 import {postWorkout} from './actions/logs';
 import {connect} from 'react-redux';
 import {runTimer, endTimer, clearTimer, tick} from './actions/timer';
+import Timer from './Timer';
 require('./form-workout-track.css');
 
 
 export function TrackWorkout(props) {
+  const timer = new Timer();
   return (
     <div className='track-form'>
       <form onSubmit={props.handleSubmit(values => {
@@ -22,7 +24,9 @@ export function TrackWorkout(props) {
         <Field name='distance' id='distance' component={Input} element='input'
           type='number' label='Distance' aria-label={'distance field'}/>
 
-        <h1>{props.currentTime}</h1>
+        {/* {timer} */}
+
+        {/* <h1>{props.currentTime}</h1>
 
         <button onClick={(e) => {
           e.preventDefault();
@@ -38,11 +42,10 @@ export function TrackWorkout(props) {
         <button onClick={(e) => {
           e.preventDefault();
           props.dispatch(clearTimer());
-          }}className='resetTimerBtn' aria-label={'reset timer button'}>Reset</button>
+          }}className='resetTimerBtn' aria-label={'reset timer button'}>Reset</button> */}
 
 
           <button aria-label={'submit button'}>Submit</button>
-
       </form>
     </div>
   )

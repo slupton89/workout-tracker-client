@@ -13,6 +13,7 @@ import LogDetail from './log-detail';
 import {getWorkouts} from './actions/logs';
 import { connect } from 'react-redux';
 import Redirect from 'react-router-dom/Redirect';
+
 export default class App extends Component {
 
   componentDidMount() {
@@ -29,7 +30,7 @@ export default class App extends Component {
           <br></br>
 
           <div className='main'>
-          <Route path='/' component={() => <Redirect to='/landing' />} />
+            <Route path='/' component={() => <Redirect to='/landing' />} />
             <Route path='/landing' component={Landing} />
             <Route exact path='/landing/register' component={RegistrationForm} />
             <Route exact path='/landing/login' component={LoginForm} />

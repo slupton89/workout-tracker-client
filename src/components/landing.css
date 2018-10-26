@@ -75,3 +75,23 @@ button:active {
 	font-size: 22px;
 	width: 140px;
 }
+
+p {
+	font-size: 16px;
+}
+
+.image-container {
+	width: 100%;
+	height: 200px;
+	overflow: hidden;
+}
+
+.landing-img {
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+		rgba(104, 0, 191, 0),
+			rgba(104, 0, 191, 1)
+		),
+		url('https://catracalivre.com.br/wp-content/uploads/2015/05/peso_musculacao.jpg');
+}
