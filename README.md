@@ -17,8 +17,11 @@ Frameworks
 ----------
 
 -react is used on the front-end
+
 -redux is used for managing state
+
 -redux-form is used for handling forms
+
 -Express and Node are used on the backend [Repo here](https://github.com/slupton89/workout-tracker-server)
 
 app.js is the main component renderer of the app. All other components are rendered and routed through here.
