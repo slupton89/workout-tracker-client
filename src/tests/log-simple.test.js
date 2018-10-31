@@ -24,7 +24,7 @@ describe('<LogSimple />', () => {
     </Provider>);
 
     const log = wrapper.find('log-item')
-
+      //TODO
   })
 
 })

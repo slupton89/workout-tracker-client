@@ -1,8 +1,8 @@
 import {SubmissionError} from 'redux-form';
 import {API_URI} from '../../config.js';
 
-const userToken = localStorage.getItem('authToken');
 
+const userToken = localStorage.getItem('authToken');
 export const POST_LOG_REQUEST = 'POST_LOG_REQUEST';
 export const postLogRequest = () => ({
   type: POST_LOG_REQUEST
@@ -85,7 +85,6 @@ export const deleteLogFailure = () => ({
 //create
 export const postWorkout = values => dispatch => {
   dispatch(postLogRequest());
-  console.log(API_URI)
   return fetch(`${API_URI}/logs`, {
     method: 'POST',
     body: JSON.stringify(values),
@@ -103,8 +102,10 @@ export const postWorkout = values => dispatch => {
     }
     return res.json();
   })
-  .then(log => { console.log('Log submitted', log); })
-  .then(dispatch(getWorkouts()))
+  .then((res) => {
+    dispatch(getWorkouts());
+    dispatch(getWorkoutId(res._id));
+  })
   .catch(error => Promise.reject(
         new SubmissionError({
           [error.location]: error.message
@@ -114,14 +115,15 @@ export const postWorkout = values => dispatch => {
 }
 
 // get
-export const getWorkouts = logs => dispatch => {
-  dispatch(fetchLogRequest(logs));
-
+export const getWorkouts = () => (dispatch, getState) => {
+  dispatch(fetchLogRequest());
+  const authToken = getState().auth.authToken;
+  if(authToken)
   return fetch(`${API_URI}/logs`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${userToken}`
+      'Authorization': `Bearer ${authToken}`
     }
   })
   .then(res => {
@@ -144,15 +146,15 @@ export const getWorkouts = logs => dispatch => {
 }
 
 //getid
-export const getWorkoutId = id => dispatch => {
+export const getWorkoutId = id => (dispatch, getState) => {
   dispatch(fetchLogIdRequest(id));
-  console.log('retrieving log');
-
+  const authToken = getState().auth.authToken;
+  if(authToken)
   return fetch(`${API_URI}/logs/${id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${userToken}`
+      'Authorization': `Bearer ${authToken}`
     }
   })
   .then(res => {
@@ -167,7 +169,6 @@ export const getWorkoutId = id => dispatch => {
   .then(log => {
     return dispatch(fetchLogIdSuccess(log));
   })
-  .then(log => console.log('Logs Retrieved', log))
   .catch(err => Promise.reject(
     new SubmissionError({
       [err.location]: err.message
@@ -178,7 +179,6 @@ export const getWorkoutId = id => dispatch => {
 //update
 export const updateWorkout = (values, id) => dispatch => {
   dispatch(patchLogRequest());
-  console.log(API_URI)
   return fetch(`${API_URI}/logs/${id}`, {
     method: 'PATCH',
     body: JSON.stringify(values),
@@ -198,7 +198,6 @@ export const updateWorkout = (values, id) => dispatch => {
   })
   .then(log => {
     dispatch(patchLogSuccess());
-    console.log('Log updated', log);
   })
   .then(dispatch(getWorkouts()))
   .catch(error => Promise.reject(
@@ -212,7 +211,6 @@ export const updateWorkout = (values, id) => dispatch => {
 //delete
 export const deleteWorkout = id => dispatch => {
   dispatch(deleteLogRequest(id));
-  console.log('deleting log: ', id);
 
   return fetch(`${API_URI}/logs/${id}`, {
     method: 'DELETE',
@@ -222,7 +220,6 @@ export const deleteWorkout = id => dispatch => {
     }
   })
   .then(res => {
-    console.log(res);
     if(!res.ok) {
       return Promise.reject({
         message: res.statusText,
@@ -231,7 +228,6 @@ export const deleteWorkout = id => dispatch => {
     }
     dispatch(deleteLogSuccess(id));
   })
-  .then(() => console.log('Log Deleted'))
   .catch(err => Promise.reject(
     new SubmissionError({
       [err.location]: err.message

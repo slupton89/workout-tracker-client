@@ -21,7 +21,7 @@ export function UserHeader(props) {
 
       <div className='workout-info'>
       <Link to='/dashboard' id='dashLink'><button className='dashBtn' aria-label={'dashboard button'}>Dashboard</button></Link>
-        <Link to='/landing' id='logoutLink'><button onClick={() => props.dispatch(logoutAuth())} className='logoutBtn' aria-label={'dashboard button'}>Logout</button></Link>
+        <Link to='/' id='logoutLink'><button onClick={() => props.dispatch(logoutAuth())} className='logoutBtn' aria-label={'dashboard button'}>Logout</button></Link>
       </div>
 
     </div>

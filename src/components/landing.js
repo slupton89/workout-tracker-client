@@ -22,8 +22,8 @@ export function Landing(props) {
       an extra run each week.</p>
       <p>Register or login to get started.</p>
 
-      <Link to='/landing/register'><button className='registerBtn' aria-label={'register button'}>Register</button></Link>
-      <Link to='/landing/login'><button className='loginBtn' aria-label={'login button'}>Log In</button></Link>
+      <Link to='/register'><button className='registerBtn' aria-label={'register button'}>Register</button></Link>
+      <Link to='/login'><button className='loginBtn' aria-label={'login button'}>Log In</button></Link>
       </div>
     </div>
   )

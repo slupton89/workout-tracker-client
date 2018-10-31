@@ -1,9 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { getWorkoutId } from './actions/logs';
-import { Link } from 'react-router-dom';
+import {getWorkoutId} from './actions/logs';
+import {Link} from 'react-router-dom';
 import moment from 'moment';
-
 require('./log-simple.css');
 
 export function LogSimple(props) {
@@ -14,14 +13,14 @@ export function LogSimple(props) {
 
   const logs = props.logs.map((log, index) => {
     return (
-      <Link to={`/dashboard/log/${log._id}`} key={index} >
+      <Link to={`/dashboard/log/${log._id}`} key={index}>
       <li className='log-item' onClick={() => {
         getCurLog(log._id);
       }
       }>
       <h1>{log.workoutType}</h1>
       <h2>{log.distance}</h2>
-      <h2>{moment(log.startedAt).format("MM/DD/YY hh:mm a")}</h2>
+      <h2>{moment(log.createdAt).format("MM/DD/YY hh:mm a")}</h2>
       </li>
       </Link>
     )

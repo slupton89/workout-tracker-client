@@ -5,8 +5,8 @@
 }
 
 body {
+	margin: 0;
 	color: white;
-
 	background-color: #6800BF;
 }
 
@@ -97,3 +97,4 @@ p {
 		background-size: cover;
 		background-repeat: no-repeat;
 	}
+

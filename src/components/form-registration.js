@@ -4,8 +4,8 @@ import {required, nonEmpty, correctLength, charIsNum} from './validators';
 import {register} from './actions/register';
 import {login} from './actions/auth';
 import Input from './input';
-import Redirect from 'react-router-dom/Redirect';
-import { connect } from 'react-redux';
+import {Redirect} from 'react-router-dom';
+import {connect} from 'react-redux';
 require('./form-registration.css');
 
 export function RegistrationForm(props) {

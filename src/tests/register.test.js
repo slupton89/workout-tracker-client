@@ -1,6 +1,6 @@
 
-import {register, registerRequest, registerSuccess} from './register';
-import {API_URI} from '../../config';
+import {register, registerRequest, registerSuccess} from '../components/actions/register';
+import {API_URI} from '../config';
 
 
 describe('register', () => {

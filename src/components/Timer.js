@@ -41,7 +41,6 @@ class Timer extends React.Component {
     let resume = (this.state.time !== 0 && !this.state.isOn) ?
       <button onClick={this.startTimer}>resume</button> :
       null;
-    console.log(start, stop, this.state, this.props);
     return(
       <div className='timer'>
         <h3>timer: {this.state.time}</h3>

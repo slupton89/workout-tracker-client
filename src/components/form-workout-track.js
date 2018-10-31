@@ -6,8 +6,6 @@ import {connect} from 'react-redux';
 import {runTimer, endTimer, clearTimer, tick} from './actions/timer';
 
 require('./form-workout-track.css');
-
-
 export function TrackWorkout(props) {
 
   let startBtn = (!props.running) ?
@@ -18,7 +16,7 @@ export function TrackWorkout(props) {
         }} className='startTimerBtn' aria-label={'start timer button'}>Start</button>
       : null;
 
-  let StopBtn = (props.running) ?
+  let stopBtn = (props.running) ?
     <button onClick={(e) => {
       e.preventDefault();
       props.dispatch(endTimer());
@@ -34,7 +32,7 @@ export function TrackWorkout(props) {
 
   return (
     <div className='track-form'>
-      <form onSubmit={props.handleSubmit(values => {
+      <form action='/dashboard' onSubmit={props.handleSubmit(values => {
         props.dispatch(postWorkout({...values, startedAt: props.startTime, endedAt: props.endTime}));
       })}>
 
@@ -53,7 +51,7 @@ export function TrackWorkout(props) {
         <h2>{props.currentTime}</h2>
 
         {startBtn}
-        {StopBtn}
+        {stopBtn}
         {resetBtn}
 
         <br></br>

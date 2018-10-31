@@ -13,7 +13,6 @@ const initialState = {
   running: false
 }
 
-
 export const timerReducer = (state = initialState, action) => {
   if(action.type === START_TIMER) {
     return Object.assign({}, state, {

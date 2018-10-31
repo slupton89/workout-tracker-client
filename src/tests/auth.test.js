@@ -1,6 +1,6 @@
 
-import {login, storeAuthToken, fetchAuthRequest, fetchAuthSuccess, refreshAuthToken, setAuth} from './auth';
-import {API_URI} from '../../config';
+import {login, fetchAuthRequest, fetchAuthSuccess, refreshAuthToken, setAuth} from '../components/actions/auth';
+import {API_URI} from '../config';
 import jwtDecode from 'jwt-decode';
 
 describe('auth', () => {

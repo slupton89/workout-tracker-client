@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import {Route, BrowserRouter as Router } from 'react-router-dom';
 import RegistrationForm from './form-registration'
 import Landing from './landing';
 import LoginForm from './form-login';
@@ -11,14 +11,14 @@ import LogWorkout from './form-workout-log';
 import LogSimple from './log-simple';
 import LogDetail from './log-detail';
 import {getWorkouts} from './actions/logs';
-import { connect } from 'react-redux';
-import Redirect from 'react-router-dom/Redirect';
+import {connect} from 'react-redux';
+
 require('./app.css');
 export default class App extends Component {
-
-  componentDidMount() {
-    if(localStorage.getItem('authToken')) {this.props.dispatch(getWorkouts())}
+  componentDidUpdate(prevProps) {
+    this.props.dispatch(getWorkouts());
   }
+
   render() {
     return (
       <Router>
@@ -30,10 +30,9 @@ export default class App extends Component {
           <br></br>
 
           <div className='main'>
-            <Route path='/' component={() => <Redirect to='/landing' />} />
-            <Route path='/landing' component={Landing} />
-            <Route exact path='/landing/register' component={RegistrationForm} />
-            <Route exact path='/landing/login' component={LoginForm} />
+            <Route path='/' component={Landing} />
+            <Route exact path='/register' component={RegistrationForm} />
+            <Route exact path='/login' component={LoginForm} />
 
             <Route exact path='/dashboard' component={LogSimple} />
 
@@ -48,9 +47,15 @@ export default class App extends Component {
             <Route exact path='/dashboard' component={Footer} />
           </div>
         </div>
+
       </Router>
     )
   }
 }
 
-App = connect()(App);
+const mapStateToProps = state => ({
+  loggedIn: state.auth.loggedIn,
+  authToken: state.auth.authToken
+})
+
+App = connect(mapStateToProps)(App);

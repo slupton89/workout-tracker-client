@@ -3,14 +3,16 @@ import {
   FETCH_AUTH_SUCCESS,
   FETCH_AUTH_FAILURE,
   CLEAR_AUTH,
-  SET_AUTH
+  SET_AUTH,
+  SET_LOGGED_IN
 } from '../actions/auth'
 
 const initialState = {
   authToken: null,
   user: null,
   loading: false,
-  error: null
+  error: null,
+  loggedIn: false
 }
 
 export const authReducer = (state=initialState, action) => {
@@ -38,7 +40,11 @@ export const authReducer = (state=initialState, action) => {
     return Object.assign({}, state, {
       authToken: action.authToken
     })
-  }
+  } else if (action.type === SET_LOGGED_IN) {
+    return Object.assign({}, state, {
+        loggedIn: action.loggedIn
+    });
+}
   return state
 }
 

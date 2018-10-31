@@ -3,13 +3,17 @@ import jwtDecode from 'jwt-decode';
 import {normalizeResponseErrors} from './utils';
 import {saveAuthToken, clearAuthToken} from '../../local-storage';
 import {API_URI} from '../../config';
-
 export const SET_AUTH = 'SET_AUTH';
 export const setAuth = authToken => ({
   type: SET_AUTH,
   authToken
 })
 
+export const SET_LOGGED_IN = 'SET_LOGGED_IN';
+export const setLoggedIn = loggedIn => ({
+    type: SET_LOGGED_IN,
+    loggedIn
+});
 
 export const CLEAR_AUTH = 'CLEAR_AUTH';
 export const clearAuth = () => ({
@@ -60,13 +64,18 @@ export const login = values => dispatch =>  {
   .then(({authToken}) => {
     storeAuthToken(authToken, dispatch);
   })
+  .then(dispatch(setLoggedIn(true)))
   .catch(error => {
-      console.log(error)
+      if(error.code === 401) {
+        return Promise.reject(new SubmissionError({
+          _error: 'Incorrect username or password'
+      }));
+      } else {
       Promise.reject(
           new SubmissionError({
               [error.location]: error.message
           })
-      )
+      )}
         }
   );
 }

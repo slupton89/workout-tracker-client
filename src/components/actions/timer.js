@@ -25,11 +25,7 @@ export const updateTime = (time) => ({
 
 let running = false;
 let time = new Date().getTime() / 1000;
-let startTime, endTime;
 let stopwatch = timo;
-
-
-
 export const tick = (dispatch) => {
   const nextTick = () => dispatch => {
     time = time + 1;
@@ -49,14 +45,12 @@ export const tick = (dispatch) => {
 
 export const runTimer = () => dispatch => {
   dispatch(startTimer(time * 1000))
-  startTime = time * 1000;
   stopwatch.start()
   running = true;
 }
 
 export const endTimer = () => dispatch => {
   dispatch(stopTimer(time * 1000));
-  endTime = time * 1000;
   running = false;
   stopwatch.stop()
 }

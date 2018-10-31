@@ -1,5 +1,6 @@
 .main {
   height: 515px;
+  position: relative;
 }
 
 .workouts-simple {
