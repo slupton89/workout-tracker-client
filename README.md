@@ -31,15 +31,19 @@ Example Images
 --------------
 
 Landing page
+
 ![Landing](https://raw.githubusercontent.com/slupton89/workout-tracker-client/master/readme/landing.png)
 
 Dashboard
+
 ![Landing](https://raw.githubusercontent.com/slupton89/workout-tracker-client/master/readme/dash.png)
 
 Creating Logs
+
 ![Landing](https://raw.githubusercontent.com/slupton89/workout-tracker-client/master/readme/createlog.png)
 
 Viewing Logs
+
 ![Landing](https://raw.githubusercontent.com/slupton89/workout-tracker-client/master/readme/detail.png)
 
 
