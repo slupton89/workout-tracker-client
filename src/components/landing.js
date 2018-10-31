@@ -14,7 +14,7 @@ export function Landing(props) {
       <div className='landing-img'></div>
       </div>
       <div>
-      <h1>Workout Tracker</h1>
+      <h1>FitLogger</h1>
       <p>
       This simple app will help you log and keep track of your workouts.
       Track and review your data over time so you can get the best results.
